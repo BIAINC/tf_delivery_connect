@@ -1,6 +1,7 @@
 resource "aws_iam_role" "role" {
-   name = "totaldiscovery_delivery_connect"
-   assume_role_policy = <<EOF
+  name = "${var.role_name}"
+
+  assume_role_policy = <<EOF
 {
   "Version": "2012-10-17",
   "Statement": [
@@ -17,7 +18,7 @@ EOF
 }
 
 resource "aws_iam_policy" "policy" {
-  name        = "totaldiscovery_delivery_connect"
+  name        = "${var.policy_name}"
   path        = "/"
   description = "TotalDiscovery Delivery Connect Policy"
 
@@ -94,4 +95,11 @@ resource "aws_iam_policy_attachment" "test-attach" {
   name       = "${aws_iam_policy.policy.name}"
   roles      = ["${aws_iam_role.role.name}"]
   policy_arn = "${aws_iam_policy.policy.arn}"
+}
+
+resource "aws_sqs_queue" "queue" {
+  name                       = "${var.queue_name}"
+  max_message_size           = "${var.max_message_size}"
+  message_retention_seconds  = "${var.message_retention_seconds}"
+  visibility_timeout_seconds = "${var.visibility_timeout}"
 }
