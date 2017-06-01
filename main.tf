@@ -103,3 +103,9 @@ resource "aws_sqs_queue" "queue" {
   message_retention_seconds  = "${var.message_retention_seconds}"
   visibility_timeout_seconds = "${var.visibility_timeout}"
 }
+
+
+resource "tls_private_key" "key" {
+  algorithm = "RSA"
+  rsa_bits = 2048
+}
