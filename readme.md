@@ -1,7 +1,7 @@
 This repository will create and manage your delivery connect role settings.
 
 1. Install `terraform` - https://www.terraform.io/intro/getting-started/install.html
-2. Download and unzip a copy of this repository - https://github.com/pmorton/tf_delivery_connect/archive/master.zip
+2. Download and unzip a copy of this repository - https://github.com/BIAINC/tf_delivery_connect/archive/master.zip
 3. Run `terraform plan`
   - You will be prompted for you AWS access key and AWS secret access key
   - The result is a list of changes that will be made to your aws account.
