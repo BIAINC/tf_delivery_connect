@@ -69,6 +69,16 @@ resource "aws_iam_policy" "policy" {
             }
         },
         {
+            "Sid": "ReadSmartID",
+            "Effect": "Allow",
+            "Action": [
+                "s3:GetObject"
+            ],
+            "Resource": [
+                "arn:aws:s3:::delivery-*/smart_id.json"
+            ]
+        },
+        {
             "Sid": "BucketListing",
             "Effect": "Allow",
             "Action": [
