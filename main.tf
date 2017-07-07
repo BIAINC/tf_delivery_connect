@@ -113,3 +113,32 @@ resource "aws_sqs_queue" "queue" {
   message_retention_seconds  = "${var.message_retention_seconds}"
   visibility_timeout_seconds = "${var.visibility_timeout}"
 }
+
+resource "aws_sqs_queue_policy" "queue" {
+  queue_url = "${aws_sqs_queue.queue.id}"
+
+  policy = <<POLICY
+{
+  "Version": "2012-10-17",
+  "Id": "sqspolicy",
+  "Statement": [
+    {
+      "Sid": "First",
+      "Effect": "Allow",
+      "Principal": {
+        "Service": [
+            "s3.amazonaws.com"
+        ]
+      },
+      "Action": "SQS:SendMessage",
+      "Resource": "${aws_sqs_queue.queue.arn}",
+      "Condition": {
+        "ArnEquals": {
+          "aws:SourceArn": "arn:aws:s3:::delivery-*"
+        }
+      }
+    }
+  ]
+}
+POLICY
+}
