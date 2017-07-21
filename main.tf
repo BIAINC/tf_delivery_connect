@@ -63,7 +63,6 @@ resource "aws_iam_policy" "policy" {
             ],
             "Condition": {
                 "StringLike": {
-                    "s3:x-amz-acl": "bucket-owner-full-control",
                     "s3:x-amz-server-side-encryption": "AES256"
                 }
             }
