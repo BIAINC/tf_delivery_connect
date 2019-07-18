@@ -1,0 +1,10 @@
+SqsUrl = "${sqs_arn}"
+PrivateKeyFile = "${private_key}"
+
+[AwsAuth]
+AccessKey = "${access_key_id}"
+SecretAccessKey = "${secret_access_key}"
+Region = "us-east-1"
+
+[AwsAuth.Role]
+ReadArn = "${role}"
